@@ -24,6 +24,56 @@ export const defaultData = {
   rightImage: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&h=400&fit=crop',
 };
 
+export function renderStatic(data) {
+  return `
+    <section style="background: linear-gradient(160deg, #06060f 0%, #0a0a18 60%, #08080f 100%); padding: 80px 48px; position: relative; overflow: hidden; font-family: Inter, system-ui, sans-serif;">
+      <div style="position: absolute; top: -5%; left: 50%; transform: translateX(-50%); width: 800px; height: 400px; background: radial-gradient(ellipse, rgba(108, 99, 255, 0.12) 0%, transparent 70%); pointer-events: none;"></div>
+      <div style="position: absolute; bottom: -10%; left: 10%; width: 500px; height: 350px; background: radial-gradient(ellipse, rgba(168, 85, 247, 0.08) 0%, transparent 70%); pointer-events: none;"></div>
+
+      <div style="position: relative; max-width: 1100px; margin: 0 auto;">
+        ${data.title ? `
+          <div style="text-align: center; margin-bottom: 64px;">
+            <h2 style="font-size: 2.2rem; font-weight: 800; line-height: 1.2; letter-spacing: -0.025em; color: #f0f0ff; margin: 0 0 16px;">
+              ${data.title}
+            </h2>
+            ${data.subtitle ? `<p style="font-size: 1rem; color: #8892a4; margin: 0; line-height: 1.6; max-width: 600px; margin: 0 auto;">${data.subtitle}</p>` : ''}
+          </div>
+        ` : ''}
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 48px; align-items: start;">
+          <div>
+            ${data.leftImage ? `
+              <div style="border-radius: 12px; overflow: hidden; margin-bottom: 24px;">
+                <img src="${data.leftImage}" alt="${data.leftTitle}" style="width: 100%; height: auto; display: block; border-radius: 12px;">
+              </div>
+            ` : ''}
+            <h3 style="font-size: 1.3rem; font-weight: 700; color: #d8b4fe; margin: 0 0 16px;">
+              ${data.leftTitle}
+            </h3>
+            <p style="font-size: 0.95rem; color: #8892a4; line-height: 1.7; margin: 0;">
+              ${data.leftDescription}
+            </p>
+          </div>
+
+          <div>
+            ${data.rightImage ? `
+              <div style="border-radius: 12px; overflow: hidden; margin-bottom: 24px;">
+                <img src="${data.rightImage}" alt="${data.rightTitle}" style="width: 100%; height: auto; display: block; border-radius: 12px;">
+              </div>
+            ` : ''}
+            <h3 style="font-size: 1.3rem; font-weight: 700; color: #d8b4fe; margin: 0 0 16px;">
+              ${data.rightTitle}
+            </h3>
+            <p style="font-size: 0.95rem; color: #8892a4; line-height: 1.7; margin: 0;">
+              ${data.rightDescription}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
 export default function BenefitsSectionRenderer({ data }) {
   return (
     <section className="component_benefits_section">

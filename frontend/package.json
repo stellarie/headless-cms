@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "export": "node scripts/export-pages.js",
+    "export": "node scripts/export-interactive.js",
     "deploy": "npm run build && npm run export",
     "lint": "eslint .",
     "preview": "vite preview"
@@ -26,6 +26,7 @@
     "uuid": "^13.0.0"
   },
   "devDependencies": {
+    "@babel/preset-react": "^7.28.5",
     "@eslint/js": "^9.39.4",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",

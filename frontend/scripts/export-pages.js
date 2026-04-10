@@ -14,6 +14,36 @@ const COMPONENTS_DIR = path.resolve(__dirname, '../../../packages/components/src
 const API = 'http://localhost:8080/api';
 const OUTPUT_DIR = path.resolve(__dirname, '../dist/pages');
 
+// Store dynamic component renderers
+const componentRenderers = new Map();
+
+// Load renderStatic functions from all components
+async function loadComponentRenderers() {
+  try {
+    const files = fs.readdirSync(COMPONENTS_DIR);
+    let loaded = 0;
+
+    for (const file of files) {
+      const filePath = path.join(COMPONENTS_DIR, file, 'index.jsx');
+      if (!fs.existsSync(filePath)) continue;
+
+      try {
+        const module = await import(`file://${filePath}`);
+        if (typeof module.renderStatic === 'function') {
+          componentRenderers.set(file, module.renderStatic);
+          loaded++;
+        }
+      } catch (err) {
+        // Skip components that fail to load
+      }
+    }
+
+    console.log(`✓ Loaded ${loaded} dynamic component renderer(s)`);
+  } catch (err) {
+    console.warn('⚠ Could not load dynamic renderers:', err.message);
+  }
+}
+
 // Simple markdown to HTML (same as in components)
 function renderMarkdown(md) {
   if (!md) return '';
@@ -65,6 +95,17 @@ function renderComponentHTML(componentName, dataJson) {
   let data = {};
   try { data = JSON.parse(dataJson || '{}'); } catch {}
 
+  // Try dynamic renderer first
+  if (componentRenderers.has(componentName)) {
+    try {
+      return componentRenderers.get(componentName)(data);
+    } catch (err) {
+      console.error(`❌ Error rendering ${componentName}:`, err.message);
+      return `<div style="padding:20px;color:#c00">Error rendering component "${componentName}"</div>`;
+    }
+  }
+
+  // Fallback to hardcoded renderers
   switch (componentName) {
     case 'Hero':
       return `
@@ -189,6 +230,10 @@ ${content}
 
 async function exportPages() {
   console.log('🚀 Exporting pages to static HTML...\n');
+
+  // Load dynamic component renderers
+  await loadComponentRenderers();
+  console.log('');
 
   // Check if API is running
   try {
