@@ -1,0 +1,77 @@
+.component_edit_modal_backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.component_edit_modal_content {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  width: 640px;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+}
+
+.component_edit_modal_header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.component_edit_modal_component_name {
+  font-size: 11px;
+}
+
+.component_edit_modal_title {
+  font-size: 12px;
+  color: var(--text-muted);
+  flex: 1;
+}
+
+.component_edit_modal_close_button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  font-size: 18px;
+  line-height: 1;
+  padding: 2px 4px;
+  border-radius: 4px;
+  transition: color 0.15s;
+}
+
+.component_edit_modal_close_button:hover {
+  color: var(--text);
+}
+
+.component_edit_modal_editor_container {
+  flex: 1;
+  min-height: 200px;
+  overflow: hidden;
+}
+
+.component_edit_modal_footer {
+  padding: 10px 16px;
+  background: var(--surface2);
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.component_edit_modal_done_button {
+  font-size: 13px;
+}

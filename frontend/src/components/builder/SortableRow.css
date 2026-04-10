@@ -1,0 +1,59 @@
+.component_sortable_row {
+  position: relative;
+  transition: outline 0.15s;
+}
+
+.component_sortable_row.dragging {
+  opacity: 0.5;
+  outline: 2px solid #6366f1;
+  outline-offset: -2px;
+}
+
+.component_sortable_row.hovered {
+  outline: 2px solid rgba(99,102,241,0.35);
+  outline-offset: -2px;
+}
+
+.component_sortable_row.idle {
+  outline: 2px solid transparent;
+  outline-offset: -2px;
+}
+
+.component_sortable_row_controls {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  z-index: 20;
+  display: flex;
+  gap: 4px;
+  pointer-events: all;
+}
+
+.component_sortable_row_drag_button {
+  background: rgba(99,102,241,0.9);
+  border: none;
+  cursor: grab;
+  color: #fff;
+  font-size: 12px;
+  border-radius: 4px;
+  padding: 3px 7px;
+  line-height: 1;
+  touch-action: none;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+
+.component_sortable_row_drag_button:active {
+  cursor: grabbing;
+}
+
+.component_sortable_row_remove_button {
+  background: rgba(239,68,68,0.9);
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  font-size: 11px;
+  border-radius: 4px;
+  padding: 3px 7px;
+  line-height: 1;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
