@@ -33,10 +33,16 @@ public class ComponentController {
         return componentService.findAll();
     }
 
+    @GetMapping("/deleted")
+    public List<ComponentResponse> findAllDeleted() {
+        return componentService.findAllDeleted();
+    }
+
     @GetMapping("/{id}")
     public ComponentResponse findById(@PathVariable UUID id) {
         return componentService.findById(id);
     }
+
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -53,6 +59,11 @@ public class ComponentController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable UUID id) {
         componentService.delete(id);
+    }
+
+    @PutMapping("/{id}/restore")
+    public ComponentResponse restore(@PathVariable UUID id) {
+        return componentService.restore(id);
     }
 
     /**

@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -24,6 +25,12 @@ public class ComponentService {
 
     public List<ComponentResponse> findAll() {
         return componentRepository.findAll().stream()
+                .map(this::toResponse)
+                .toList();
+    }
+
+    public List<ComponentResponse> findAllDeleted() {
+        return componentRepository.findAllDeleted().stream()
                 .map(this::toResponse)
                 .toList();
     }
@@ -74,10 +81,18 @@ public class ComponentService {
 
     @Transactional
     public void delete(UUID id) {
-        if (!componentRepository.existsById(id)) {
-            throw new IllegalArgumentException("Component not found: " + id);
-        }
-        componentRepository.deleteById(id);
+        Component component = componentRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Component not found: " + id));
+        component.setDeletedAt(LocalDateTime.now());
+        componentRepository.save(component);
+    }
+
+    @Transactional
+    public ComponentResponse restore(UUID id) {
+        Component component = componentRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Component not found: " + id));
+        component.setDeletedAt(null);
+        return toResponse(componentRepository.save(component));
     }
 
     private void validateHookScripts(Map<HookType, String> hooks) {
@@ -100,6 +115,7 @@ public class ComponentService {
         r.setRendererSource(c.getRendererSource());
         r.setCreatedAt(c.getCreatedAt());
         r.setUpdatedAt(c.getUpdatedAt());
+        r.setDeletedAt(c.getDeletedAt());
         return r;
     }
 }

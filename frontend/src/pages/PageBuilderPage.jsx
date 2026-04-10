@@ -51,6 +51,7 @@ export default function PageBuilderPage() {
   const [slug, setSlug] = useState('');
   const [rows, setRows] = useState([]);
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
   const [saving, setSaving] = useState(false);
 
   // { rowId, colId } when a column is being edited in the modal
@@ -67,6 +68,14 @@ export default function PageBuilderPage() {
       }).catch(e => setError(e.message));
     }
   }, [id]);
+
+  // Auto-dismiss success message after 2.5 seconds
+  useEffect(() => {
+    if (success) {
+      const timer = setTimeout(() => setSuccess(''), 2500);
+      return () => clearTimeout(timer);
+    }
+  }, [success]);
 
   // ── Row mutations ──
   function addRow(componentName) {
@@ -142,11 +151,12 @@ export default function PageBuilderPage() {
   async function handleSave() {
     setSaving(true);
     setError('');
+    setSuccess('');
     try {
       const payload = { name, slug, blocks: JSON.stringify(rows) };
       if (isEdit) await updatePage(id, payload);
       else await createPage(payload);
-      navigate('/pages');
+      setSuccess('Page saved! ✨');
     } catch (e) {
       setError(e.message);
     } finally {
@@ -193,6 +203,7 @@ export default function PageBuilderPage() {
       </div>
 
       {error && <div className="alert alert-error" style={{ flexShrink: 0 }}>{error}</div>}
+      {success && <div className="alert alert-success" style={{ flexShrink: 0 }}>{success}</div>}
 
       {/* Two-panel builder */}
       <div className="component_page_builder_layout">

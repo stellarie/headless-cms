@@ -13,7 +13,7 @@ function CMSShell() {
       <nav className="sidebar">
         <div className="sidebar-header">
           <span className="logo-icon">&#9670;</span>
-          <h1>CMS</h1>
+          <h1>stellacreate</h1>
         </div>
         <NavLink to="/" end className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
           Components

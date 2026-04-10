@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 /**
  * Compiles and renders a JSX string live using @babel/standalone (loaded via window.Babel).
@@ -40,7 +40,7 @@ export default function LiveRenderer({ source, data }) {
       // eslint-disable-next-line no-new-func
       const factory = new Function(
         'React', 'useState', 'useEffect', 'useRef', 'useMemo', 'useCallback',
-        `const exports = {}; ${code}; return exports.default ?? null;`
+        `const exports = {}; ${code.replace('export default', 'exports.default = ')}; return exports.default ?? null;`
       );
 
       const result = factory(

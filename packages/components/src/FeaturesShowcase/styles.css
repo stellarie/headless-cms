@@ -1,0 +1,120 @@
+.component_features_showcase_section {
+  background: linear-gradient(160deg, #06060f 0%, #0a0a18 60%, #08080f 100%);
+  padding: 80px 48px;
+  position: relative;
+  overflow: hidden;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+.component_features_showcase_glow_left {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  width: 600px;
+  height: 400px;
+  background: radial-gradient(ellipse, rgba(108, 99, 255, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.component_features_showcase_glow_right {
+  position: absolute;
+  bottom: 10%;
+  right: 5%;
+  width: 500px;
+  height: 350px;
+  background: radial-gradient(ellipse, rgba(168, 85, 247, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.component_features_showcase_content {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.component_features_showcase_header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.component_features_showcase_title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  color: #f0f0ff;
+  margin: 0 0 16px;
+}
+
+.component_features_showcase_subtitle {
+  font-size: 1rem;
+  color: #8892a4;
+  margin: 0;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.component_features_showcase_grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+}
+
+.component_features_showcase_card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 32px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.component_features_showcase_card:hover {
+  background: rgba(108, 99, 255, 0.08);
+  border-color: rgba(108, 99, 255, 0.3);
+  transform: translateY(-4px);
+}
+
+.component_features_showcase_icon {
+  font-size: 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  background: linear-gradient(135deg, rgba(108, 99, 255, 0.2), rgba(168, 85, 247, 0.15));
+  border: 1px solid rgba(108, 99, 255, 0.3);
+  border-radius: 10px;
+}
+
+.component_features_showcase_card_title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #c4b5fd;
+  margin: 0;
+}
+
+.component_features_showcase_card_desc {
+  font-size: 0.95rem;
+  color: #8892a4;
+  margin: 0;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .component_features_showcase_section {
+    padding: 60px 24px;
+  }
+
+  .component_features_showcase_title {
+    font-size: 1.8rem;
+  }
+
+  .component_features_showcase_grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -17,4 +17,5 @@ public class ComponentResponse {
     private String rendererSource;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+    private LocalDateTime deletedAt;
 }

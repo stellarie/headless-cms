@@ -15,10 +15,12 @@ api.interceptors.response.use(
 
 // Components
 export const getComponents = () => api.get('/components').then(r => r.data);
+export const getDeletedComponents = () => api.get('/components/deleted').then(r => r.data);
 export const getComponent = id => api.get(`/components/${id}`).then(r => r.data);
 export const createComponent = data => api.post('/components', data).then(r => r.data);
 export const updateComponent = (id, data) => api.put(`/components/${id}`, data).then(r => r.data);
 export const deleteComponent = id => api.delete(`/components/${id}`);
+export const restoreComponent = id => api.put(`/components/${id}/restore`).then(r => r.data);
 export const executeOnRequest = (id, context) =>
   api.post(`/components/${id}/execute`, { context }).then(r => r.data);
 

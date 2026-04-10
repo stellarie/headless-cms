@@ -1,0 +1,135 @@
+.component_use_cases_section {
+  background: linear-gradient(160deg, #06060f 0%, #0a0a18 60%, #08080f 100%);
+  padding: 80px 48px;
+  position: relative;
+  overflow: hidden;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+.component_use_cases_glow_top {
+  position: absolute;
+  top: -5%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 400px;
+  background: radial-gradient(ellipse, rgba(108, 99, 255, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.component_use_cases_glow_bottom_left {
+  position: absolute;
+  bottom: -10%;
+  left: 10%;
+  width: 500px;
+  height: 350px;
+  background: radial-gradient(ellipse, rgba(168, 85, 247, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.component_use_cases_glow_bottom_right {
+  position: absolute;
+  bottom: -5%;
+  right: 10%;
+  width: 450px;
+  height: 300px;
+  background: radial-gradient(ellipse, rgba(236, 72, 153, 0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.component_use_cases_content {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.component_use_cases_header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.component_use_cases_title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  color: #f0f0ff;
+  margin: 0 0 16px;
+}
+
+.component_use_cases_subtitle {
+  font-size: 1rem;
+  color: #8892a4;
+  margin: 0;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.component_use_cases_grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.component_use_cases_card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 36px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.component_use_cases_card:hover {
+  background: rgba(168, 85, 247, 0.1);
+  border-color: rgba(168, 85, 247, 0.3);
+  transform: translateY(-6px);
+}
+
+.component_use_cases_icon {
+  font-size: 2.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(236, 72, 153, 0.15));
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  border-radius: 12px;
+}
+
+.component_use_cases_card_title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #d8b4fe;
+  margin: 0;
+}
+
+.component_use_cases_card_desc {
+  font-size: 0.95rem;
+  color: #8892a4;
+  margin: 0;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .component_use_cases_section {
+    padding: 60px 24px;
+  }
+
+  .component_use_cases_title {
+    font-size: 1.8rem;
+  }
+
+  .component_use_cases_grid {
+    grid-template-columns: 1fr;
+  }
+
+  .component_use_cases_card {
+    padding: 28px;
+  }
+}

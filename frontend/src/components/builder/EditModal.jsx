@@ -39,7 +39,7 @@ export default function EditModal({ col, onUpdate, onClose }) {
         {/* Monaco editor */}
         <div className="component_edit_modal_editor_container">
           <Editor
-            height="100%"
+            height="640px"
             language="json"
             theme="vs-dark"
             value={col.data}

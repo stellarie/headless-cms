@@ -1,0 +1,195 @@
+.component_dev_status_section {
+  background: linear-gradient(160deg, #06060f 0%, #0a0a18 60%, #08080f 100%);
+  padding: 80px 48px;
+  position: relative;
+  overflow: hidden;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+.component_dev_status_glow_top {
+  position: absolute;
+  top: -10%;
+  right: 10%;
+  width: 600px;
+  height: 400px;
+  background: radial-gradient(ellipse, rgba(108, 99, 255, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.component_dev_status_glow_bottom {
+  position: absolute;
+  bottom: -5%;
+  left: 10%;
+  width: 500px;
+  height: 300px;
+  background: radial-gradient(ellipse, rgba(236, 72, 153, 0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.component_dev_status_content {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.component_dev_status_badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(168, 85, 247, 0.12);
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  border-radius: 100px;
+  padding: 5px 16px;
+  font-size: 12px;
+  color: #d8b4fe;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 32px;
+}
+
+.component_dev_status_header {
+  margin-bottom: 48px;
+}
+
+.component_dev_status_title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  color: #f0f0ff;
+  margin: 0 0 16px;
+}
+
+.component_dev_status_subtitle {
+  font-size: 1rem;
+  color: #8892a4;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.component_dev_status_features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.component_dev_status_feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.component_dev_status_feature:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.component_dev_status_feature--done {
+  border-color: rgba(34, 197, 94, 0.3);
+}
+
+.component_dev_status_feature--done:hover {
+  background: rgba(34, 197, 94, 0.08);
+  border-color: rgba(34, 197, 94, 0.5);
+}
+
+.component_dev_status_feature--in-progress {
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+.component_dev_status_feature--in-progress:hover {
+  background: rgba(59, 130, 246, 0.08);
+  border-color: rgba(59, 130, 246, 0.5);
+}
+
+.component_dev_status_feature--planned {
+  border-color: rgba(251, 191, 36, 0.3);
+}
+
+.component_dev_status_feature--planned:hover {
+  background: rgba(251, 191, 36, 0.08);
+  border-color: rgba(251, 191, 36, 0.5);
+}
+
+.component_dev_status_feature_icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 1.4rem;
+  margin-top: 2px;
+}
+
+.component_dev_status_feature--done .component_dev_status_feature_icon {
+  color: #86efac;
+}
+
+.component_dev_status_feature--in-progress .component_dev_status_feature_icon {
+  color: #60a5fa;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.component_dev_status_feature--planned .component_dev_status_feature_icon {
+  color: #fbbf24;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.component_dev_status_feature_text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.component_dev_status_feature_label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #f0f0ff;
+  margin: 0;
+}
+
+.component_dev_status_feature_status {
+  font-size: 0.8rem;
+  color: #8892a4;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.component_dev_status_feature--done .component_dev_status_feature_status {
+  color: #86efac;
+}
+
+.component_dev_status_feature--in-progress .component_dev_status_feature_status {
+  color: #60a5fa;
+}
+
+.component_dev_status_feature--planned .component_dev_status_feature_status {
+  color: #fbbf24;
+}
+
+@media (max-width: 768px) {
+  .component_dev_status_section {
+    padding: 60px 24px;
+  }
+
+  .component_dev_status_title {
+    font-size: 1.8rem;
+  }
+
+  .component_dev_status_features {
+    grid-template-columns: 1fr;
+  }
+}

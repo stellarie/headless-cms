@@ -1,4 +1,4 @@
-# 💜 Headless CMS — Build Beautiful Pages Without Code
+# 💜 stellacreate — CMS for teams who want both
 
 A powerful, modern content management system with a drag-and-drop page builder, live component preview, and Groovy plugin system. Built on Spring Boot + React + Vite.
 
@@ -381,6 +381,19 @@ lsof -ti :8080 | xargs kill -9
 - Check the backend logs for error messages
 - Groovy is very similar to Java — typos will fail at runtime
 - Test hooks with simple `return [result: true]` first
+
+### Pages Disappearing After Restart
+- The CMS uses **H2 database** for persistence
+- By default, `application.yml` uses `jdbc:h2:file:` with a **relative path**
+- If you run the app from different directories, it creates a new database each time
+- **Fix**: Change the datasource URL in `backend/src/main/resources/application.yml` to use an **absolute path**:
+  ```yaml
+  spring:
+    datasource:
+      url: jdbc:h2:file:/var/home/stella/cms/cms-data;AUTO_SERVER=TRUE
+  ```
+- Replace `/var/home/stella/cms` with your actual CMS directory path
+- Restart the backend and your data will persist across sessions ✨
 
 ---
 
