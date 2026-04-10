@@ -13,7 +13,7 @@ A powerful, modern content management system with a drag-and-drop page builder, 
 - **Groovy Hooks** — Server-side lifecycle hooks (BEFORE_SAVE, AFTER_SAVE, BEFORE_FETCH, AFTER_FETCH, ON_REQUEST) run on the JVM
 - **Live Preview** — See exactly how your page looks before publishing, or edit unsaved drafts
 - **Headless Architecture** — Content lives in a REST API; serve it to React, Vue, mobile apps, or static generators
-- **Static Export** — Deploy to GitHub Pages without a live backend server
+- **Interactive Static Export** — Deploy fully interactive pages to GitHub Pages with React bundled inline — no backend needed!
 - **Dark Modern Design** — Built-in components with glassmorphism, gradients, and ambient glows
 
 ---
@@ -240,9 +240,19 @@ return data
 
 ---
 
-## 📦 Deployment to GitHub Pages
+## 📦 Interactive Export to GitHub Pages
 
-### Step 1: Export Static HTML
+### ✨ NEW: Fully Interactive Static Pages!
+
+Your pages are now exported as **interactive, self-contained HTML files** with:
+- ✅ React runtime bundled inline
+- ✅ All 12 components with full interactivity (FAQ accordions, state management, etc.)
+- ✅ CSS bundled and inlined
+- ✅ Page data baked into each file
+- ✅ Zero backend dependencies
+- ✅ Works on GitHub Pages!
+
+### Step 1: Export Interactive Pages
 
 ```bash
 cd frontend
@@ -250,9 +260,9 @@ npm run export
 ```
 
 This generates:
-- `dist/pages/[slug].html` — one HTML file per page
+- `dist/pages/[slug].html` — one **interactive** HTML file per page (~200KB each)
 - `dist/pages/index.html` — landing page with links to all pages
-- Pure static files, no runtime dependencies
+- Each file is completely self-contained with React + all components + CSS
 
 ### Step 2: Push to GitHub Pages
 
@@ -261,8 +271,8 @@ This generates:
 git checkout -b gh-pages
 
 # Stage and commit the exported files
-git add frontend/dist/
-git commit -m "Deploy to GitHub Pages"
+git add frontend/dist/pages/
+git commit -m "Deploy interactive pages to GitHub Pages"
 
 # Push to remote
 git push origin gh-pages
@@ -275,25 +285,27 @@ git push origin gh-pages
 3. Set **Deploy from** to `/root`
 4. Save
 
-Your pages are now live! 🎉
+Your interactive pages are now live! 🎉
+
+**Live example:** https://stellarie.github.io/headless-cms/
+
+### How It Works
+
+- `npm run export` fetches all pages from the backend API
+- **Transpiles JSX components** to React.createElement calls
+- **Bundles React 18** (UMD build) directly into each page
+- **Inlines all CSS** from all components
+- **Embeds page data** as JSON in each HTML file
+- **Generates self-contained files** — no backend needed at runtime!
+
+Pages are **fully interactive** — accordions open/close, components with state work perfectly, everything is responsive and beautiful. No static HTML, no missing features. Pure React interactivity in static files.
 
 ### One-Step Deploy
 
 ```bash
 cd frontend
-npm run deploy    # Builds Vite + exports pages
+npm run export && git add frontend/dist/pages/ && git commit -m "Deploy" && git push origin gh-pages
 ```
-
-Then push to gh-pages branch.
-
-### How It Works
-
-- `npm run export` fetches all pages from the backend API
-- Renders each component to inline HTML (no React needed at runtime)
-- Generates a standalone `.html` file per page
-- No backend required to view the pages — just static files!
-
-You can delete the backend after exporting. Pages will still work. (But you won't be able to edit them without the CMS running.)
 
 ### Troubleshooting Export
 
@@ -301,7 +313,20 @@ You can delete the backend after exporting. Pages will still work. (But you won'
 |-------|----------|
 | "Could not reach API" | Make sure backend is running: `cd .. && ./start.sh` |
 | "No pages found" | Create at least one page in the CMS first |
-| "Import paths are broken" | Make sure GitHub Pages is set to the `gh-pages` branch |
+| "ReferenceError: X is not defined" | This shouldn't happen! But if it does, check that all component imports are properly handled |
+| "SyntaxError in HTML" | Make sure you're running the latest export script |
+
+### About the Interactive Export
+
+The export process:
+1. Transpiles JSX components using Babel
+2. Extracts module-level constants and helper functions
+3. Wraps everything in IIFEs for proper scoping
+4. Downloads React 18 UMD builds from jsDelivr
+5. Inlines React, all components, and CSS into each page
+6. Embeds page data as JSON
+
+Result: **Standalone HTML files that work anywhere** — no server, no build step, just open in a browser!
 
 ---
 
