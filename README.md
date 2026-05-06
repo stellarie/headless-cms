@@ -1,5 +1,3 @@
-# 💜 stellacreate — CMS for teams who want both
-
 A powerful, modern content management system with a drag-and-drop page builder, live component preview, and Groovy plugin system. Built on Spring Boot + React + Vite.
 
 > Build pages that speak for themselves.
